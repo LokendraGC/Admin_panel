@@ -34,7 +34,7 @@ Route::prefix('admin')->group(function(){
     Route::post('post-category/create',[PostCategoryController::class,'store'])->name('admin.post.category.store');
     Route::get('post-category/{id}/edit',[PostCategoryController::class,'edit'])->name('admin.post.category.edit');
     Route::post('post-category/{id}/edit',[PostCategoryController::class,'update'])->name('admin.post.category.update');
-
+    Route::get('post-category/{id}/delete',[PostCategoryController::class,'destroy'])->name('admin.category.post.destroy');
 
      // Pages
     Route::get('page',[PageController::class,'index'])->name('admin.page.index');

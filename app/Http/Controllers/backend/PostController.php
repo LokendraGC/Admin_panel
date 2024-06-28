@@ -22,13 +22,6 @@ class PostController extends Controller
             return view('backend.posts.create-post');
         }
 
-        public function edit(Post $id){
-
-            return view('backend.posts.edit-post',[
-                'post' => $id
-            ]);
-        }
-
         public function store(Request $request){
 
                 $post = new Post;
@@ -44,6 +37,13 @@ class PostController extends Controller
 
                 return redirect()->route('admin.post.edit', $post->id);
 
+        }
+
+        public function edit(Post $id){
+
+            return view('backend.posts.edit-post',[
+                'post' => $id
+            ]);
         }
 
         public function update(Post $id, Request $request){

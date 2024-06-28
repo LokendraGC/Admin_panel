@@ -121,7 +121,7 @@
                                                     </span>
                                                     <span class="view">
                                                         |
-                                                        <a target="_blank" href="http://osteo.test/about"
+                                                        <a target="_blank" href=""
                                                             class="text-primary">View</a>
                                                     </span>
                                                 </div>

@@ -24,11 +24,6 @@
                 <div class="col-md-8">
                     <!-- general form elements -->
                     <div class="card card-primary">
-                        {{-- <div class="card-header">
-                  <h3 class="card-title">Quick Example</h3>
-                </div> --}}
-                        <!-- /.card-header -->
-                        <!-- form start -->
                         <form action="{{ route('admin.post.update', $post->id) }}" method="POST">
                             @csrf
                             <div class="card-body">
