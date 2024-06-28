@@ -25,6 +25,8 @@ Route::prefix('admin')->group(function(){
     Route::post('post/create',[PostController::class,'store'])->name('admin.post.store');
     Route::get('post/{id}/edit',[PostController::class,'edit'])->name('admin.post.edit');
     Route::post('post/{id}/edit',[PostController::class,'update'])->name('admin.post.update');
+    Route::get('post/{id}/delete',[PostController::class,'destroy'])->name('admin.post.destroy');
+
 
     // post category
     Route::get('post-category',[PostCategoryController::class,'index'])->name('admin.post.category.index');

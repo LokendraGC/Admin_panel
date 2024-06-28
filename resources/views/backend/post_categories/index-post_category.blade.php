@@ -33,6 +33,14 @@
     border-radius: .25rem;
     margin-right: 15px;
 }
+
+tr.odd {
+    cursor: pointer;
+}
+tr.even {
+    cursor: pointer;
+}
+
 </style>
 
 @section('main-section')

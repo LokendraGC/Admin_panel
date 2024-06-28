@@ -16,11 +16,24 @@
       }
 
       i.fa.fa-circle {
-        font-size: 8px;
-        padding-right: 4px;
-        text-align: center;
+          font-size: 8px;
+          padding-right: 4px;
+          text-align: center;
       }
 
+      .nav-sidebar>.nav-item.menu-open>.nav-link {
+          background-color: rgb(110 155 201) !important;
+      }
+
+      .nav-treeview>.nav-item>.nav-link.active {
+          background-color: rgba(255, 255, 255, .1) !important;
+          color: white !important;
+      }
+
+      .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active {
+          background-color: rgba(255, 255, 255, .1) !important;
+          color: white !important;
+      }
   </style>
 
   <!-- Main Sidebar Container -->
@@ -42,7 +55,8 @@
                   <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                   <li class="nav-item">
-                      <a href="{{ route('admin.options.index') }}" class="nav-link">
+                      <a href="{{ route('admin.dashboard') }}"
+                          class="nav-link {{ Route::is('admin.dashboard') ? 'active' : '' }}">
                           <i class="fa fa-television" aria-hidden="true"></i>
                           <p>
                               Dashboard
@@ -51,7 +65,8 @@
                   </li>
 
                   <li class="nav-item">
-                      <a href="{{ route('admin.options.index') }}" class="nav-link">
+                      <a href="{{ route('admin.options.index') }}"
+                          class="nav-link {{ Route::is('admin.options.index') ? 'active' : '' }}">
                           <i class="fa fa-user" aria-hidden="true"></i>
                           <p>
                               Options
@@ -61,7 +76,7 @@
                   </li>
 
                   <li class="nav-item menu-open">
-                      <a href="#" class="nav-link ">
+                      <a href="#" class="nav-link">
                           <i class="fa fa-rss" aria-hidden="true"></i>
                           <p>
                               Posts
@@ -70,22 +85,25 @@
                       </a>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="{{ route('admin.post.index') }}" class="nav-link">
-                                  <i class="fa fa-circle" aria-hidden="true"></i>
+                              <a href="{{ route('admin.post.index') }}"
+                                  class="nav-link {{ Route::is('admin.post.index') ? 'active' : '' }}">
+                                  {{-- <i class="fa fa-circle" aria-hidden="true"></i> --}}
 
                                   <p>All Posts</p>
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="{{ route('admin.post.create') }}" class="nav-link">
-                                  <i class="fa fa-circle" aria-hidden="true"></i>
+                              <a href="{{ route('admin.post.create') }}"
+                                  class="nav-link {{ Route::is('admin.post.create') ? 'active' : '' }}">
+                                  {{-- <i class="fa fa-circle" aria-hidden="true"></i> --}}
 
                                   <p>Add New Post</p>
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="{{ route('admin.post.category.index') }}" class="nav-link">
-                                  <i class="fa fa-circle" aria-hidden="true"></i>
+                              <a href="{{ route('admin.post.category.index') }}"
+                                  class="nav-link {{ Route::is('admin.post.category.index') ? 'active' : '' }}">
+                                  {{-- <i class="fa fa-circle" aria-hidden="true"></i> --}}
 
                                   <p>Category</p>
                               </a>
@@ -106,14 +124,14 @@
                           <li class="nav-item">
                               <a href="{{ route('admin.page.index') }}"
                                   class="nav-link {{ Route::is('admin.page.index') ? 'active' : '' }}">
-                                  <i class="fa fa-circle" aria-hidden="true"></i>
+                                  {{-- <i class="fa fa-circle" aria-hidden="true"></i> --}}
                                   <p>All Page</p>
                               </a>
                           </li>
                           <li class="nav-item">
                               <a href="{{ route('admin.page.create') }}"
                                   class="nav-link {{ Route::is('admin.page.create') ? 'active' : '' }}">
-                                  <i class="fa fa-circle" aria-hidden="true"></i>
+                                  {{-- <i class="fa fa-circle" aria-hidden="true"></i> --}}
                                   <p>Add New Page</p>
                               </a>
                           </li>

@@ -12,26 +12,35 @@
         text-decoration: underline;
     }
 
-    .dataTables_filter{
+    .dataTables_filter {
         text-align: right;
         padding-right: 15px;
     }
 
-    .dataTables_filter label{
-    display: inline-block;
-    margin-bottom: .5rem;
-    gap: 9px;
-    display: inline-flex;
+    .dataTables_filter label {
+        display: inline-block;
+        margin-bottom: .5rem;
+        gap: 9px;
+        display: inline-flex;
     }
+
     .pagination {
-    display: -ms-flexbox;
-    display: flex;
-    justify-content: end;
-    padding-left: 0;
-    list-style: none;
-    border-radius: .25rem;
-    margin-right: 15px;
-}
+        display: -ms-flexbox;
+        display: flex;
+        justify-content: end;
+        padding-left: 0;
+        list-style: none;
+        border-radius: .25rem;
+        margin-right: 15px;
+    }
+
+    tr.odd {
+        cursor: pointer;
+    }
+
+    tr.even {
+        cursor: pointer;
+    }
 </style>
 
 @section('main-section')
@@ -84,7 +93,8 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table id="example1" class="table table-striped project-orders-table data__table dataTable no-footer">
+                            <table id="example1"
+                                class="table table-striped project-orders-table data__table dataTable no-footer">
                                 <thead>
                                     <tr>
                                         <th>Name</th>
@@ -93,163 +103,36 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td><span>Home</span>
-                                            <br>
-                                            <div class="row-action">
-                                                <span class="edit">
-                                                    <a href="http://osteo.test/admin/page/9/edit"
-                                                        class="text-primary">Edit</a>
-                                                </span>
-                                                <span class="delete">
-                                                    |
-                                                    <a href="http://osteo.test/admin/page/9/delete"
-                                                        onclick="return confirm('Are you sure you want to delete?');"
-                                                        class="text-danger">Trash</a>
-                                                </span>
-                                                <span class="view">
-                                                    |
-                                                    <a target="_blank" href="http://osteo.test/about"
-                                                        class="text-primary">View</a>
-                                                </span>
-                                            </div>
-                                        </td>
 
-                                        <td>Win 95+</td>
-                                        <td>Win 95+</td>
+                                    @foreach ($posts as $post)
+                                        <tr>
+                                            <td><span>{{ $post->title }}</span>
+                                                <br>
+                                                <div class="row-action">
+                                                    <span class="edit">
+                                                        <a href="{{ route('admin.post.edit', $post->id) }}"
+                                                            class="text-primary">Edit</a>
+                                                    </span>
+                                                    <span class="delete">
+                                                        |
+                                                        <a href="{{ route('admin.post.destroy',$post->id) }}"
+                                                            onclick="return confirm('Are you sure you want to delete?');"
+                                                            class="text-danger">Trash</a>
+                                                    </span>
+                                                    <span class="view">
+                                                        |
+                                                        <a target="_blank" href="http://osteo.test/about"
+                                                            class="text-primary">View</a>
+                                                    </span>
+                                                </div>
+                                            </td>
 
-                                    </tr>
-                                    <tr>
-                                        <td><span>Contact</span>
-                                            <br>
-                                            <div class="row-action">
-                                                <span class="edit">
-                                                    <a href="http://osteo.test/admin/page/9/edit"
-                                                        class="text-primary">Edit</a>
-                                                </span>
-                                                <span class="delete">
-                                                    |
-                                                    <a href="http://osteo.test/admin/page/9/delete"
-                                                        onclick="return confirm('Are you sure you want to delete?');"
-                                                        class="text-danger">Trash</a>
-                                                </span>
-                                                <span class="view">
-                                                    |
-                                                    <a target="_blank" href="http://osteo.test/about"
-                                                        class="text-primary">View</a>
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td>Internet
-                                            Explorer 5.0
-                                        </td>
-                                        <td>Win 95+</td>
+                                            <td>{{ $post->slug }}</td>
+                                            <td>{{ $post->created_at }}</td>
 
-                                    </tr>
-                                    <tr>
-                                        <td><span>Services</span>
-                                            <br>
-                                            <div class="row-action">
-                                                <span class="edit">
-                                                    <a href="http://osteo.test/admin/page/9/edit"
-                                                        class="text-primary">Edit</a>
-                                                </span>
-                                                <span class="delete">
-                                                    |
-                                                    <a href="http://osteo.test/admin/page/9/delete"
-                                                        onclick="return confirm('Are you sure you want to delete?');"
-                                                        class="text-danger">Trash</a>
-                                                </span>
-                                                <span class="view">
-                                                    |
-                                                    <a target="_blank" href="http://osteo.test/about"
-                                                        class="text-primary">View</a>
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td>Internet
-                                            Explorer 5.5
-                                        </td>
-                                        <td>Win 95+</td>
+                                        </tr>
+                                    @endforeach
 
-                                    </tr>
-                                    <tr>
-                                        <td><span>Our Team</span>
-                                            <br>
-                                            <div class="row-action">
-                                                <span class="edit">
-                                                    <a href="http://osteo.test/admin/page/9/edit"
-                                                        class="text-primary">Edit</a>
-                                                </span>
-                                                <span class="delete">
-
-                                                    <a href="http://osteo.test/admin/page/9/delete"
-                                                        onclick="return confirm('Are you sure you want to delete?');"
-                                                        class="text-danger">Trash</a>
-                                                </span>
-                                                <span class="view">
-
-                                                    <a target="_blank" href="http://osteo.test/about"
-                                                        class="text-primary">View</a>
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td>Internet
-                                            Explorer 6
-                                        </td>
-                                        <td>Win 98+</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td><span>About</span>
-                                            <br>
-                                            <div class="row-action">
-                                                <span class="edit">
-                                                    <a href="http://osteo.test/admin/page/9/edit"
-                                                        class="text-primary">Edit</a>
-                                                </span>
-                                                <span class="delete">
-                                                    |
-                                                    <a href="http://osteo.test/admin/page/9/delete"
-                                                        onclick="return confirm('Are you sure you want to delete?');"
-                                                        class="text-danger">Trash</a>
-                                                </span>
-                                                <span class="view">
-                                                    |
-                                                    <a target="_blank" href="http://osteo.test/about"
-                                                        class="text-primary">View</a>
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td>Internet Explorer 7</td>
-                                        <td>Win XP SP2+</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td><span>Testimonial</span>
-                                            <br>
-                                            <div class="row-action">
-                                                <span class="edit">
-                                                    <a href="http://osteo.test/admin/page/9/edit"
-                                                        class="text-primary">Edit</a>
-                                                </span>
-                                                <span class="delete">
-                                                    |
-                                                    <a href="http://osteo.test/admin/page/9/delete"
-                                                        onclick="return confirm('Are you sure you want to delete?');"
-                                                        class="text-danger">Trash</a>
-                                                </span>
-                                                <span class="view">
-                                                    |
-                                                    <a target="_blank" href="http://osteo.test/about"
-                                                        class="text-primary">View</a>
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td>AOL browser (AOL desktop)</td>
-                                        <td>Win XP</td>
-
-                                    </tr>
 
 
                                 </tbody>

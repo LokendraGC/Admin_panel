@@ -4,19 +4,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Dashboard</title>
+    <title>Admin Panel</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('dist/img/admin.png') }}">
 
-   @include('backend.assets.cssfile')
+    @include('backend.assets.cssfile')
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
-
-        <!-- Preloader -->
-        {{-- <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60"
-                width="60">
-        </div> --}}
 
         @include('backend.layouts.header')
 
