@@ -75,7 +75,7 @@
 
                   </li>
 
-                  <li class="nav-item menu-open">
+                  <li class="nav-item {{ Request::is('admin/post*') ? 'menu-open' : '' }}">
                       <a href="#" class="nav-link">
                           <i class="fa fa-rss" aria-hidden="true"></i>
                           <p>
@@ -88,7 +88,6 @@
                               <a href="{{ route('admin.post.index') }}"
                                   class="nav-link {{ Route::is('admin.post.index') ? 'active' : '' }}">
                                   {{-- <i class="fa fa-circle" aria-hidden="true"></i> --}}
-
                                   <p>All Posts</p>
                               </a>
                           </li>
@@ -112,7 +111,7 @@
                       </ul>
                   </li>
 
-                  <li class="nav-item menu-open">
+                  <li class="nav-item {{ Request::is('admin/page*') ? 'menu-open' : '' }}">
                       <a href="#" class="nav-link">
                           <i class="fa fa-book" aria-hidden="true"></i>
                           <p>
@@ -155,7 +154,7 @@
                       </a>
                   </li>
                   <li class="nav-item">
-                      <a href="{{ route('admin.options.index') }}" class="nav-link">
+                      <a href="{{ route('logout') }}" class="nav-link">
                           <i class="fa fa-sign-out" aria-hidden="true"></i>
                           <p>
                               Logout

@@ -20,7 +20,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <form action="{{ route('admin.post.store') }}" method="POST">
+            <form action="{{ route('admin.post.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <!-- left column -->
@@ -33,15 +33,24 @@
                                     <label for="title">Name</label>
                                     <input type="text" class="form-control" id="title" placeholder="Add title"
                                         name="title">
+                                        @error('title')
+                                        <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="slug">Slug</label>
                                     <input type="text" class="form-control" id="slug" placeholder="Add slug"
                                         name="slug">
+                                        @error('slug')
+                                        <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="content">Content</label>
-                                    <textarea class="editor" name="content"></textarea>
+                                    <textarea class="editor" class="form-control" name="content"></textarea>
+                                    @error('content')
+                                    <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
+                                @enderror
                                 </div>
                             </div>
 
@@ -56,21 +65,24 @@
                                 <div class="form-group">
                                     {{-- <label>Choose </label> --}}
                                     <select class="form-control select2" style="width: 100%;" name="status">
-                                        <option  value="" selected="">Select Status</option>
+                                        <option value="" selected="">Select Status</option>
                                         <option value="publish">publish</option>
                                         <option value="draft">Draft</option>
                                     </select>
                                 </div>
 
-
                                 <div class="form-group">
-                                    <label for="header_logo">Featured Image</label>
-                                    <input type="file" class="form-control-file" id="header_logo" name="header_logo">
+                                    <label for="featured_image">Featured Image</label>
+                                    <input type="file" class="form-control-file" id="featured_image"
+                                        name="featured_image" accept="image/*">
+                                    @error('featured_image')
+                                        <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group">
                                     <label>Page Template</label>
-                                    <select class="form-control select2" style="width: 100%;">
+                                    <select class="form-control select2" style="width: 100%;" name="page_template">
                                         <option selected="">Default</option>
                                         <option>Home</option>
                                         <option>About</option>
@@ -100,11 +112,18 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="seo_title">SEO Title</label>
-                                    <input type="text" class="form-control" id="seo_title" placeholder="Enter seo title">
+                                    <input type="text" class="form-control" id="seo_title" placeholder="Enter seo title"
+                                        name="seo_title">
+                                        @error('seo_title')
+                                        <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="metadescription">Meta Description</label>
                                     <textarea class="form-control" id="metadescription" rows="5" name="seo_description" spellcheck="false"></textarea>
+                                    @error('seo_description')
+                                    <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
+                                @enderror
                                 </div>
 
                             </div>

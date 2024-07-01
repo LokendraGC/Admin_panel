@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <a href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
+    <a href="{{ route('') }}">Admin Dashboard</a>
 </body>
 
 </html>

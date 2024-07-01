@@ -24,7 +24,7 @@
                 <div class="col-md-8">
                     <!-- general form elements -->
                     <div class="card card-primary">
-                        <form action="{{ route('admin.post.update', $post->id) }}" method="POST">
+                        <form action="{{ route('admin.post.update', $post->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
@@ -39,13 +39,10 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="content">Content</label>
-                                    <textarea class="editor" name="content">{{ $post->content }} </textarea>
+                                    <textarea class="editor" class="form-control" name="content">{{ $post->content }}</textarea>
                                 </div>
-
                             </div>
-
-
-                    </div>
+                        </div>
                     <!-- /.card -->
                 </div>
 
@@ -64,7 +61,7 @@
                             @csrf
                             <div class="form-group">
                                 <label for="header_logo">Featured Image</label>
-                                <input type="file" class="form-control-file" id="header_logo" name="header_logo">
+                                <input type="file" class="form-control-file" id="featured_image" name="featured_image" accept="image/*">
                             </div>
 
                             <div class="form-group">
@@ -99,13 +96,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="seo_title">SEO Title</label>
-                                <input type="text" class="form-control" id="seo_title" placeholder="Enter seo title">
+                                <input type="text" class="form-control" id="seo_title" placeholder="Enter seo title"
+                                    name="seo_title" value="{{ $postMeta['seo_title'] }}">
                             </div>
                             <div class="form-group">
                                 <label for="metadescription">Meta Description</label>
-                                <textarea class="form-control" id="metadescription" rows="5" name="seo_description" spellcheck="false"></textarea>
+                                <textarea class="form-control" id="metadescription" rows="5" name="seo_description" spellcheck="false">{{ $postMeta['seo_description'] }}</textarea>
                             </div>
-
                         </div>
 
                         </form>

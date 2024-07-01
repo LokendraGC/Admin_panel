@@ -1,12 +1,11 @@
 @extends('backend.layouts.app')
 
 @section('main-section')
-
-<style>
-    .card-primary.card-outline {
-        border-top: none !important;
-    }
-</style>
+    <style>
+        .card-primary.card-outline {
+            border-top: none !important;
+        }
+    </style>
 
     <!-- External stylesheet for CSS -->
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
@@ -58,45 +57,56 @@
                                     <div class="container-fluid">
                                         <div class="row">
                                             <div class="col-md-6 my-3">
-                                                <form>
+                                                <form action="{{ route('admin.options.store') }}" method="POST"
+                                                    enctype="multipart/form-data">
                                                     @csrf
                                                     <div class="form-group">
                                                         <label for="email">Email</label>
                                                         <input type="email" class="form-control" id="email"
-                                                            placeholder="Enter email">
+                                                            placeholder="Enter email" name="email"
+                                                            value="{{ $option['email'] }}">
+                                                        @error('email')
+                                                            <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
+                                                        @enderror
                                                     </div>
-                                                </form>
+
                                             </div>
                                             <div class="col-md-6 my-3">
-                                                <form>
-                                                    @csrf
-                                                    <div class="form-group">
-                                                        <label for="phone">Phone</label>
-                                                        <input type="number" class="form-control" id="phone"
-                                                            placeholder="Enter Phone">
-                                                    </div>
-                                                </form>
+
+                                                <div class="form-group">
+                                                    <label for="phone">Phone</label>
+                                                    <input type="number" class="form-control" id="phone"
+                                                        placeholder="Enter Phone" name="phone"
+                                                        value="{{ $option['phone'] }}">
+                                                    @error('phone')
+                                                        <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+
                                             </div>
                                             <div class="col-md-12">
-                                                <form>
-                                                    @csrf
-                                                    <div class="form-group">
-                                                        <label for="address">Address</label>
-                                                        <input type="text" class="form-control" id="address"
-                                                            placeholder="Enter address">
-                                                    </div>
-                                                    {{-- <div class="form-group">
+
+                                                <div class="form-group">
+                                                    <label for="address">Address</label>
+                                                    <input type="text" class="form-control" id="address"
+                                                        placeholder="Enter address" name="address"
+                                                        value="{{ $option['address'] }}">
+                                                    @error('address')
+                                                        <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                                {{-- <div class="form-group">
                                                         <label for="operating_time">Operating Time</label>
                                                         <input type="text" class="form-control" id="operating_time"
                                                                placeholder="Operating time">
                                                     </div> --}}
 
 
-                                                    <div class="form-group">
-                                                        <label for="exampleInputMap">Map</label>
-                                                        <textarea class="form-control" id="exampleInputMap" placeholder="Map link" style="height: 150px"></textarea>
-                                                    </div>
-                                                </form>
+                                                <div class="form-group">
+                                                    <label for="exampleInputMap">Map</label>
+                                                    <textarea class="form-control" id="exampleInputMap" placeholder="Map link" style="height: 150px" name="map">{{ $option['map'] }}</textarea>
+                                                </div>
+
                                             </div>
                                         </div><!-- /.row -->
                                     </div><!-- /.container-fluid -->
@@ -107,14 +117,13 @@
                                     <div class="container-fluid">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <form>
-                                                    @csrf
-                                                    <div class="form-group">
-                                                        <label for="header_logo">Header Logo</label>
-                                                        <input type="file" class="form-control-file" id="header_logo"
-                                                            name="header_logo">
-                                                    </div>
-                                                </form>
+
+                                                <div class="form-group">
+                                                    <label for="header_logo">Header Logo</label>
+                                                    <input type="file" class="form-control-file" id="header_logo"
+                                                        name="header_logo" accept="image/*">
+                                                </div>
+
                                             </div>
                                         </div><!-- /.row -->
                                     </div><!-- /.container-fluid -->
@@ -125,23 +134,22 @@
                                     <div class="container-fluid">
                                         <div class="row">
                                             <div class="col-md-6 my-3">
-                                                <form>
-                                                    @csrf
-                                                    <div class="form-group">
-                                                        <label for="footer_description">Description</label>
-                                                        <textarea class="form-control" id="footer_description" placeholder="Footer description" style="height: 150px"></textarea>
-                                                    </div>
-                                                </form>
+
+                                                <div class="form-group">
+                                                    <label for="footer_description">Description</label>
+                                                    <textarea class="form-control" id="footer_description" placeholder="Footer description" style="height: 150px"
+                                                        name="footer_description">{{ $option['footer_description'] }}</textarea>
+                                                </div>
+
                                             </div>
                                             <div class="col-md-6">
-                                                <form>
-                                                    @csrf
-                                                    <div class="form-group" style="margin-top: 20px">
-                                                        <label for="footer_logo">Footer Logo</label>
-                                                        <input type="file" class="form-control-file" id="footer_logo"
-                                                            name="footer_logo">
-                                                    </div>
-                                                </form>
+
+                                                <div class="form-group" style="margin-top: 20px">
+                                                    <label for="footer_logo">Footer Logo</label>
+                                                    <input type="file" class="form-control-file" id="footer_logo"
+                                                        name="footer_logo" accept="image/*">
+                                                </div>
+
                                             </div>
                                         </div><!-- /.row -->
                                     </div><!-- /.container-fluid -->
@@ -152,29 +160,39 @@
                                     <div class="container-fluid">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <form>
-                                                    @csrf
-                                                    <div class="form-group">
-                                                        <label for="facebook_url">Facebook URL</label>
-                                                        <input type="url" class="form-control" id="facebook_url"
-                                                            placeholder="Enter Facebook URL">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="twitter_url">Twitter URL</label>
-                                                        <input type="url" class="form-control" id="twitter_url"
-                                                            placeholder="Enter Twitter URL">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="instagram_url">Instagram URL</label>
-                                                        <input type="url" class="form-control" id="instagram_url"
-                                                            placeholder="Enter Instagram URL">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="linkedin_url">LinkedIn URL</label>
-                                                        <input type="url" class="form-control" id="linkedin_url"
-                                                            placeholder="Enter LinkedIn URL">
-                                                    </div>
-                                                </form>
+
+                                                <div class="form-group">
+                                                    <label for="facebook_url">Facebook URL</label>
+                                                    <input type="url" class="form-control" id="facebook_url"
+                                                        placeholder="Enter Facebook URL" name="fb_url"
+                                                        value="{{ $option['fb_url'] }}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="twitter_url">Twitter URL</label>
+                                                    <input type="url" class="form-control" id="twitter_url"
+                                                        placeholder="Enter Twitter URL" name="twitter_url"
+                                                        value="{{ $option['twitter_url'] }}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="instagram_url">Instagram URL</label>
+                                                    <input type="url" class="form-control" id="instagram_url"
+                                                        placeholder="Enter Instagram URL" name="insta_url"
+                                                        value="{{ $option['insta_url'] }}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="linkedin_url">LinkedIn URL</label>
+                                                    <input type="url" class="form-control" id="linkedin_url"
+                                                        placeholder="Enter LinkedIn URL" name="linkedin_url"
+                                                        value="{{ $option['linkedin_url'] }}">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="youtube_url">YouTube URL</label>
+                                                    <input type="url" class="form-control" id="youtube_url"
+                                                        placeholder="Enter youtube URL" name="youtube_url"
+                                                        value="{{ $option['youtube_url'] }}">
+                                                </div>
+
                                             </div>
                                         </div><!-- /.row -->
                                     </div><!-- /.container-fluid -->
@@ -188,11 +206,11 @@
                 <div class="col-lg-3">
                     <div class="card">
                         <div class="card-body">
-                            <button type="button" class="btn bg-gradient-primary">Update</button>
+                            <button type="submit" class="btn bg-gradient-primary">Update</button>
                         </div>
                     </div>
                 </div><!-- /.col-lg-3 -->
-
+                </form>
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </section><!-- /.content -->

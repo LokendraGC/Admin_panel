@@ -6,18 +6,20 @@ use App\Http\Controllers\backend\PostController;
 use App\Http\Controllers\backend\PostCategoryController;
 use App\Http\Controllers\backend\PageController;
 use App\Http\Controllers\backend\OptionsController;
+use App\Http\Controllers\backend\AuthController;
 
 
 //  /admin/<URL>
 
 
 // for posts
-Route::prefix('admin')->group(function(){
+Route::prefix('admin')->middleware(['auth'])->group(function(){
 
     Route::get('/',[DashboardController::class,'index'])->name('admin.dashboard');
 
     // options
     Route::get('options',[OptionsController::class,'index'])->name('admin.options.index');
+    Route::post('options',[OptionsController::class,'store'])->name('admin.options.store');
 
     // posts
     Route::get('post',[PostController::class,'index'])->name('admin.post.index');
