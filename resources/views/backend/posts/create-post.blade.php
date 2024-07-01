@@ -10,7 +10,6 @@
                     <h1>Add New Post</h1>
                 </div>
                 <div class="col-sm-6">
-
                     </ol>
                 </div>
             </div>
@@ -33,7 +32,7 @@
                                     <label for="title">Name</label>
                                     <input type="text" class="form-control" id="title" placeholder="Add title"
                                         name="title">
-                                        @error('title')
+                                    @error('title')
                                         <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -41,7 +40,7 @@
                                     <label for="slug">Slug</label>
                                     <input type="text" class="form-control" id="slug" placeholder="Add slug"
                                         name="slug">
-                                        @error('slug')
+                                    @error('slug')
                                         <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -49,12 +48,10 @@
                                     <label for="content">Content</label>
                                     <textarea class="editor" class="form-control" name="content"></textarea>
                                     @error('content')
-                                    <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
-                                @enderror
+                                        <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
-
-
                         </div>
                         <!-- /.card -->
                     </div>
@@ -89,8 +86,16 @@
                                     </select>
                                 </div>
                                 <button type="submit" class="btn bg-gradient-primary">Update</button>
-
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Multiple</label>
+                            <select class="select2" multiple="multiple" data-placeholder="Select a State"
+                                style="width: 100%;">
+                                @foreach ($categories as $category)
+                                    <option>{{ $category->title }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
 
@@ -114,7 +119,7 @@
                                     <label for="seo_title">SEO Title</label>
                                     <input type="text" class="form-control" id="seo_title" placeholder="Enter seo title"
                                         name="seo_title">
-                                        @error('seo_title')
+                                    @error('seo_title')
                                         <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -122,13 +127,10 @@
                                     <label for="metadescription">Meta Description</label>
                                     <textarea class="form-control" id="metadescription" rows="5" name="seo_description" spellcheck="false"></textarea>
                                     @error('seo_description')
-                                    <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
-                                @enderror
+                                        <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
+                                    @enderror
                                 </div>
-
                             </div>
-
-
                         </div>
                     </div>
                 </div>

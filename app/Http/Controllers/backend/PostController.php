@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\Models\Post;
+use App\Models\Category;
 use App\Models\PostMeta;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,7 +13,7 @@ class PostController extends Controller
 {
         public function index(){
 
-            $posts = Post::get();
+            $posts = Post::where('type','post')->get();
 
             return view('backend.posts.index-post',[
                 'posts' => $posts
@@ -20,7 +21,12 @@ class PostController extends Controller
         }
 
         public function create(){
-            return view('backend.posts.create-post');
+
+            $categories = Category::get();
+
+            return view('backend.posts.create-post',[
+                'categories' => $categories
+            ]);
         }
 
         public function store(Request $request){
@@ -55,7 +61,6 @@ class PostController extends Controller
                 $metadata['seo_title'] = $request->seo_title;
                 $metadata['seo_description'] = $request->seo_description;
                 $metadata['featured_image'] = $request->featured_image->store('','public');
-
 
                 foreach ( $metadata as $key => $value ) {
                     $post_meta = new PostMeta();

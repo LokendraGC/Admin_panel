@@ -44,5 +44,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::post('page/create',[PageController::class,'store'])->name('admin.page.store');
     Route::get('page/{id}/edit',[PageController::class,'edit'])->name('admin.page.edit');
     Route::post('page/{id}/edit',[PageController::class,'update'])->name('admin.page.update');
+    Route::get('page/{id}/delete',[PageController::class,'destroy'])->name('admin.page.destroy');
 
 });

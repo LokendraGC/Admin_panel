@@ -24,7 +24,8 @@
                 <div class="col-md-8">
                     <!-- general form elements -->
                     <div class="card card-primary">
-                        <form action="{{ route('admin.post.update', $post->id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.post.update', $post->id) }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
@@ -42,7 +43,7 @@
                                     <textarea class="editor" class="form-control" name="content">{{ $post->content }}</textarea>
                                 </div>
                             </div>
-                        </div>
+                    </div>
                     <!-- /.card -->
                 </div>
 
@@ -61,7 +62,8 @@
                             @csrf
                             <div class="form-group">
                                 <label for="header_logo">Featured Image</label>
-                                <input type="file" class="form-control-file" id="featured_image" name="featured_image" accept="image/*">
+                                <input type="file" class="form-control-file" id="featured_image" name="featured_image"
+                                    accept="image/*">
                             </div>
 
                             <div class="form-group">

@@ -121,7 +121,8 @@
                                                 <div class="form-group">
                                                     <label for="header_logo">Header Logo</label>
                                                     <input type="file" class="form-control-file" id="header_logo"
-                                                        name="header_logo" accept="image/*">
+                                                        name="header_logo" accept="image/*"
+                                                        value="{{ $option['header_logo'] }}">
                                                 </div>
 
                                             </div>
@@ -147,7 +148,8 @@
                                                 <div class="form-group" style="margin-top: 20px">
                                                     <label for="footer_logo">Footer Logo</label>
                                                     <input type="file" class="form-control-file" id="footer_logo"
-                                                        name="footer_logo" accept="image/*">
+                                                        name="footer_logo" accept="image/*"
+                                                        value="{{ $option['footer_logo'] }}">
                                                 </div>
 
                                             </div>
