@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backend\AuthController;
+use App\Http\Controllers\backend\ProfileController;
 
 Route::get('/', function () {
     return view('backend.auth.login');
@@ -21,6 +22,13 @@ Route::post('/admin-login',[AuthController::class,'postLogin'])->name('admin.log
 
 // logout
 Route::get('/admin-logout',[AuthController::class,'getLogOut'])->name('logout');
+
+
+//user profile
+Route::get('/user/register',[ProfileController::class,'createUser'])->name('user.login');
+Route::get('/user/show-users',[ProfileController::class,'allUser'])->name('user.all');
+Route::post('/user/register',[ProfileController::class,'register'])->name('user.register');
+Route::get('/dashboard',[ProfileController::class,'checkDashboard'])->name('user.dashboard');
 
 // connecting custom routes
 Route::group([],base_path('routes/admin.php'));

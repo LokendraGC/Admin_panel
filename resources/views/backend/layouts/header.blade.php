@@ -14,10 +14,12 @@
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
           <!-- Navbar Search -->
+          <li class="nav-item text-center">
+              <p style="margin-top: 9px">Welcome {{ explode(' ', Auth::user()->name)[0] }}</p>
+          </li>
           <li class="nav-item ">
               <a href="pages/widgets.html" class="nav-link">
                   <i class="fa fa-user" aria-hidden="true"></i>
-
               </a>
           </li>
       </ul>

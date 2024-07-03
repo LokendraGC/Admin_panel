@@ -56,121 +56,56 @@
         </div><!-- /.container-fluid -->
     </section>
 
-
-
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <form action="{{ route('admin.page.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('user.register') }}" method="POST">
                 @csrf
                 <div class="row">
                     <!-- left column -->
-                    <div class="col-md-8">
+                    <div class="col-md-4">
                         <!-- general form elements -->
                         <div class="card card-primary">
-
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="title">Name</label>
-                                    <input type="text" class="form-control" id="title" placeholder="Add title"
-                                        name="title">
-                                        @error('title')
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" id="name" placeholder="Enter Your Name"
+                                        name="name">
+                                    @error('title')
                                         <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="slug">Slug</label>
-                                    <input type="text" class="form-control" id="slug" placeholder="Add slug"
-                                        name="slug">
-                                        @error('slug')
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Add Email"
+                                        name="email">
+                                    @error('email')
                                         <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="form-group">
-                                    <label for="content">Content</label>
-                                    <textarea class="editor" class="form-control" name="content"></textarea>
-                                    @error('content')
-                                    <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
-                                @enderror
-                                </div>
-                            </div>
 
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="password" placeholder="Add Password"
+                                        name="password">
+                                    @error('password')
+                                        <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="confirm_password">Confirm Password</label>
+                                    <input type="password" class="form-control" id="confirm_password" placeholder="Confirm Password"
+                                        name="password_confirmation">
+                                    @error('password')
+                                        <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <button type="submit" class="btn bg-gradient-primary">Register</button>
+                            </div>
                         </div>
                         <!-- /.card -->
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="form-group">
-                                    {{-- <label>Choose </label> --}}
-                                    <select class="form-control select2" style="width: 100%;" name="status">
-                                        <option value="" selected="">Select Status</option>
-                                        <option value="publish">publish</option>
-                                        <option value="draft">Draft</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="featured_image">Featured Image</label>
-                                    <input type="file" class="form-control-file" id="featured_image"
-                                        name="featured_image" accept="image/*">
-                                    @error('featured_image')
-                                        <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Page Template</label>
-                                    <select class="form-control select2" style="width: 100%;" name="page_template">
-                                        <option selected="">Default</option>
-                                        @foreach ($pages as $page)
-                                        <option value="{{$page->title}}">{{ $page->title }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <button type="submit" class="btn bg-gradient-primary">Update</button>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row">
-                    <!-- left column -->
-                    <div class="col-md-8">
-                        <!-- general form elements -->
-                        <div class="card card-primary">
-                            {{-- <div class="card-header">
-                  <h3 class="card-title">Quick Example</h3>
-                </div> --}}
-                            <!-- /.card-header -->
-                            <!-- form start -->
-
-                            <div class="card-body">
-                                <div class="card-header" style="margin-bottom: 10px">
-                                    <h4>SEO</h4>
-                                </div>
-                                <div class="form-group">
-                                    <label for="seo_title">SEO Title</label>
-                                    <input type="text" class="form-control" id="seo_title" placeholder="Enter seo title"
-                                        name="seo_title">
-                                        @error('seo_title')
-                                        <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="metadescription">Meta Description</label>
-                                    <textarea class="form-control" id="metadescription" rows="5" name="seo_description" spellcheck="false"></textarea>
-                                    @error('seo_description')
-                                    <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
-                                @enderror
-                                </div>
-
-                            </div>
-
-
-                        </div>
                     </div>
                 </div>
             </form>
@@ -178,5 +113,4 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
-
-    @endsection
+@endsection

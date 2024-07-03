@@ -137,7 +137,7 @@
 
                       </ul>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item {{ Request::is('user/*') ? 'menu-open' : '' }}">
                       <a href="{{ route('admin.options.index') }}" class="nav-link">
                           <i class="fa fa-user-plus" aria-hidden="true"></i>
                           <p>
@@ -147,15 +147,15 @@
                       </a>
                       <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('admin.page.index') }}"
-                                class="nav-link {{ Route::is('admin.page.index') ? 'active' : '' }}">
+                            <a href="{{ route('user.all') }}"
+                                class="nav-link {{ Route::is('user.all') ? 'active' : '' }}">
                                 {{-- <i class="fa fa-circle" aria-hidden="true"></i> --}}
                                 <p>All Users</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.page.create') }}"
-                                class="nav-link {{ Route::is('admin.page.create') ? 'active' : '' }}">
+                            <a href="{{ route('user.login') }}"
+                                class="nav-link {{ Route::is('user.login') ? 'active' : '' }}">
                                 {{-- <i class="fa fa-circle" aria-hidden="true"></i> --}}
                                 <p>Add New User</p>
                             </a>
