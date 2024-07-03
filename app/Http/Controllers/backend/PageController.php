@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\backend;
 
+use App\Models\Page;
 use App\Models\Post;
 use App\Models\PostMeta;
 use Illuminate\Http\Request;
@@ -68,16 +69,25 @@ class PageController extends Controller
     }
 
     public function create(){
-        return view('backend.pages.create-page');
+
+        $pages = Post::where('type','page')->get();
+
+        return view('backend.pages.create-page',[
+            'pages' => $pages
+        ]);
     }
 
     public function edit(Post $id){
 
+        // return $id;
         $postMeta = $id->postMeta->pluck('meta_value','meta_key')->toArray();
+        $pages = Post::where('type','page')->get();
 
         return view('backend.pages.edit-page',[
             'post' => $id,
-            'postMeta' => $postMeta
+            'postMeta' => $postMeta,
+            'pages' => $pages,
+
         ]);
     }
 

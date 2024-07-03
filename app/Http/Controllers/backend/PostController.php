@@ -31,7 +31,7 @@ class PostController extends Controller
 
         public function store(Request $request){
 
-                // return $request;
+            // return $request->category;
 
             $request->validate([
                     'title' => ['required', 'unique:posts', 'max:255'],
@@ -40,11 +40,11 @@ class PostController extends Controller
                     'status' => 'required',
             ]);
 
-                $file = $request->file('featured_image');
+            $request->validate([
+                'featured_image' => 'required | mimes:png,jpg,jpeg|max:3000'
+            ]);
 
-                $request->validate([
-                    'featured_image' => 'required | mimes:png,jpg,jpeg|max:3000'
-                ]);
+                $file = $request->file('featured_image');
 
                 $post = new Post;
 
@@ -56,6 +56,22 @@ class PostController extends Controller
                 $post->type = 'post';
 
                 $post->save();
+
+                $categories = isset( $request->category ) ? $request->category : [];
+
+                $existingCategoryIds = Category::whereIn('id', $categories)->pluck('id')->toArray();
+
+                if ( $post->exists() ) {
+
+                    $post->categories()->sync($existingCategoryIds);
+                }
+                else {
+
+                    $post->categories()->attach($existingCategoryIds);
+                }
+
+                // $post = Post::with('categories')->get();
+                // return $post;
 
                 $metadata = [];
                 $metadata['seo_title'] = $request->seo_title;
@@ -77,13 +93,15 @@ class PostController extends Controller
         }
 
         public function edit(Post $id){
-            $postMeta = $id->postMeta->pluck('meta_value', 'meta_key')->toArray();
 
-            // dd($postMeta);
+        $categories = Category::get();
+
+        $postMeta = $id->postMeta->pluck('meta_value', 'meta_key')->toArray();
 
             return view('backend.posts.edit-post',[
                 'post' => $id,
-                'postMeta' => $postMeta
+                'postMeta' => $postMeta,
+                'categories' => $categories
             ]);
         }
 

@@ -24,7 +24,8 @@
                 <div class="col-md-8">
                     <!-- general form elements -->
                     <div class="card card-primary">
-                        <form action="{{ route('admin.page.update', $post->id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.page.update', $post->id) }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
@@ -42,7 +43,7 @@
                                     <textarea class="editor" class="form-control" name="content">{{ $post->content }}</textarea>
                                 </div>
                             </div>
-                        </div>
+                    </div>
                     <!-- /.card -->
                 </div>
 
@@ -53,23 +54,27 @@
                                 {{-- <label>Choose </label> --}}
                                 <select class="form-control select2" style="width: 100%;" name="status">
                                     <option>Select Status</option>
-                                    <option {{ $post->status == 'publish' ? 'selected' : '' }}>Publish</option>
-                                    <option {{ $post->status == 'draft' ? 'selected' : '' }}>Draft</option>
+                                    <option {{ $post->status == 'Publish' ? 'selected' : '' }}>Publish</option>
+                                    <option {{ $post->status == 'Draft' ? 'selected' : '' }}>Draft</option>
                                 </select>
                             </div>
 
                             @csrf
                             <div class="form-group">
                                 <label for="header_logo">Featured Image</label>
-                                <input type="file" class="form-control-file" id="featured_image" name="featured_image" accept="image/*">
+                                <input type="file" class="form-control-file" id="featured_image" name="featured_image"
+                                    accept="image/*">
                             </div>
 
                             <div class="form-group">
                                 <label>Page Template</label>
                                 <select class="form-control select2" style="width: 100%;">
-                                    <option selected="">Default</option>
-                                    <option>Home</option>
-                                    <option>About</option>
+                                    <option selected="" value="">Default</option>
+                                    @foreach ($pages as $page)
+                                        <option @if ($post->title == $page->title) selected @endif
+                                            value="{{ $page->title }}">{{ $page->title }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                             <button type="submit" class="btn bg-gradient-primary">Update</button>

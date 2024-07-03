@@ -57,4 +57,27 @@ class PostCategoryController extends Controller
 
         return redirect()->back();
     }
+
+    public function assignCategory($payload, $ids)
+    {
+
+        return $payload;
+
+        if (!$payload instanceof Post) {
+            throw new \InvalidArgumentException('$payload must be an instance of Post');
+        }
+
+        $existingCategoryIds = Category::whereIn('id', $ids)->pluck('id')->toArray();
+
+        if ( $payload->exists() ) {
+
+            $payload->categories()->sync($existingCategoryIds);
+        }
+        else {
+
+            $payload->categories()->attach($existingCategoryIds);
+        }
+
+        return true;
+    }
 }

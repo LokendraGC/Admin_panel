@@ -66,16 +66,27 @@
                                     accept="image/*">
                             </div>
 
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label>Page Template</label>
                                 <select class="form-control select2" style="width: 100%;">
                                     <option selected="">Default</option>
                                     <option>Home</option>
                                     <option>About</option>
                                 </select>
-                            </div>
+                            </div> --}}
                             <button type="submit" class="btn bg-gradient-primary">Update</button>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Multiple</label>
+                        <select class="select2" multiple="multiple" data-placeholder="Select a State"
+                            style="width: 100%;" name="category[]">
+                            @foreach ($categories as $category)
+                                <option
+                                @if ($posts->contains('id', $category->id)) selected @endif value="{{ $category->id }}">{{ $category->title }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
 

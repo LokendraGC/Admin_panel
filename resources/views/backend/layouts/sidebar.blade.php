@@ -142,8 +142,26 @@
                           <i class="fa fa-user-plus" aria-hidden="true"></i>
                           <p>
                               User Profile
+                              <i class="fas fa-angle-left right"></i>
                           </p>
                       </a>
+                      <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.page.index') }}"
+                                class="nav-link {{ Route::is('admin.page.index') ? 'active' : '' }}">
+                                {{-- <i class="fa fa-circle" aria-hidden="true"></i> --}}
+                                <p>All Users</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.page.create') }}"
+                                class="nav-link {{ Route::is('admin.page.create') ? 'active' : '' }}">
+                                {{-- <i class="fa fa-circle" aria-hidden="true"></i> --}}
+                                <p>Add New User</p>
+                            </a>
+                        </li>
+
+                    </ul>
                   </li>
                   <li class="nav-item">
                       <a href="{{ route('admin.options.index') }}" class="nav-link">

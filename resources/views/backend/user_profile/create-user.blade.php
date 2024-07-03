@@ -1,5 +1,47 @@
 @extends('backend.layouts.app')
 
+<style>
+    a.text-primary:hover,
+    a.text-primary:focus {
+        color: #5e3391 !important;
+        text-decoration: underline;
+    }
+
+    a.text-danger:hover,
+    a.text-danger:focus {
+        text-decoration: underline;
+    }
+
+    .dataTables_filter {
+        text-align: right;
+        padding-right: 15px;
+    }
+
+    .dataTables_filter label {
+        display: inline-block;
+        margin-bottom: .5rem;
+        gap: 9px;
+        display: inline-flex;
+    }
+
+    .pagination {
+        display: -ms-flexbox;
+        display: flex;
+        justify-content: end;
+        padding-left: 0;
+        list-style: none;
+        border-radius: .25rem;
+        margin-right: 15px;
+    }
+
+    tr.odd {
+        cursor: pointer;
+    }
+
+    tr.even {
+        cursor: pointer;
+    }
+</style>
 
 @section('main-section')
     <!-- Content Header (Page header) -->
@@ -7,15 +49,14 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Add New Page</h1>
+                    <h1>Create User</h1>
                 </div>
-                <div class="col-sm-6">
 
-                    </ol>
-                </div>
             </div>
         </div><!-- /.container-fluid -->
     </section>
+
+
 
     <!-- Main content -->
     <section class="content">
@@ -137,4 +178,5 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
-@endsection
+
+    @endsection
