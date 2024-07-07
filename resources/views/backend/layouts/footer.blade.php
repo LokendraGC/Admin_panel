@@ -58,6 +58,30 @@
             })
         });
     </script>
+
+<script>
+    function removeNode(button) {
+        // get data-name form DOM elements of invocation i.e this
+        let fieldName = button.getAttribute('data-name');
+
+        // Find the parent node of the button (which is the file preview item)
+        var filePreviewItem = button.closest('.file-preview-item');
+
+        // Create a hidden input element
+        var hiddenInput = document.createElement('input');
+        hiddenInput.type = 'hidden';
+        hiddenInput.name = fieldName + '_remove'; // Set the name attribute as needed
+        hiddenInput.value = 1; // Set the value attribute
+
+        // Insert the hidden input element before the file preview item
+        filePreviewItem.parentNode.insertBefore(hiddenInput, filePreviewItem);
+
+        // Remove the file preview item from the DOM
+        filePreviewItem.remove();
+    }
+</script>
+
+
 </footer>
 
 <!-- Control Sidebar -->

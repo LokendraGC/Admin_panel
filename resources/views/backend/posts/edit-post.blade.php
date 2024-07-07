@@ -1,5 +1,16 @@
 @extends('backend.layouts.app')
 
+<style>
+    .delete {
+        color: red;
+        font-size: 20px;
+        cursor: pointer;
+        top: 100px;
+        right: 390px;
+        position: absolute;
+    }
+</style>
+
 @section('main-section')
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -9,7 +20,6 @@
                     <h1>Edit Post</h1>
                 </div>
                 <div class="col-sm-6">
-
                     </ol>
                 </div>
             </div>
@@ -18,14 +28,15 @@
 
     <!-- Main content -->
     <section class="content">
+        <form action="{{ route('admin.post.update', $post->id) }}" method="POST"
+            enctype="multipart/form-data">
         <div class="container-fluid">
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-8">
                     <!-- general form elements -->
                     <div class="card card-primary">
-                        <form action="{{ route('admin.post.update', $post->id) }}" method="POST"
-                            enctype="multipart/form-data">
+
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
@@ -52,16 +63,35 @@
                         <div class="card-body">
                             <div class="form-group">
                                 {{-- <label>Choose </label> --}}
-                                <select class="form-control select2" style="width: 100%;" name="status">
+
+                                <select class="form-control" style="width: 100%;" name="status">
                                     <option>Select Status</option>
-                                    <option {{ $post->status == 'publish' ? 'selected' : '' }}>Publish</option>
-                                    <option {{ $post->status == 'draft' ? 'selected' : '' }}>Draft</option>
+                                    <option value="publish" @if ($post->status == 'publish') selected @endif>
+                                        Publish</option>
+                                    <option value="draft" @if ($post->status == 'draft') selected @endif>
+                                        Draft
+                                    </option>
                                 </select>
                             </div>
 
-                            @csrf
+
                             <div class="form-group">
                                 <label for="header_logo">Featured Image</label>
+                                {{-- <a href=""><i class="fa-solid fa-delete-left delete"></i></a> --}}
+
+                                <br>
+                                <div class="file-preview-item">
+                                    <button onclick="removeNode(this)" data-name="featured_image"
+                                        class="btn btn-sm btn-link remove-attachment" type="button">
+                                        <i class="fa-solid fa-delete-left delete append"></i>
+                                    </button>
+                                    @if (isset($postMeta['featured_image']))
+                                        <img src="{{ asset('storage/' . $postMeta['featured_image']) }}"
+                                            alt="Featured Image" style="max-width: 100px; margin-bottom: 10px;">
+                                    @else
+                                        <p>No featured image uploaded.</p>
+                                    @endif
+                                </div>
                                 <input type="file" class="form-control-file" id="featured_image" name="featured_image"
                                     accept="image/*">
                             </div>
@@ -78,18 +108,17 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Multiple</label>
-                        <select class="select2" multiple="multiple" data-placeholder="Select a State"
-                            style="width: 100%;" name="category[]">
+                        <label>Category</label>
+                        <select class="select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;"
+                            name="category[]">
                             @foreach ($categories as $category)
-                                <option
-                                @if ($posts->contains('id', $category->id)) selected @endif value="{{ $category->id }}">{{ $category->title }}
+                                <option @if ($post->categories->contains('id', $category->id)) selected @endif value="{{ $category->id }}">
+                                    {{ $category->title }}
                                 </option>
                             @endforeach
                         </select>
                     </div>
                 </div>
-
             </div>
             <div class="row">
                 <!-- left column -->
@@ -118,12 +147,13 @@
                             </div>
                         </div>
 
-                        </form>
+
                     </div>
                 </div>
             </div>
 
         </div><!-- /.container-fluid -->
+        </form>
     </section>
 
     <script src="{{ asset('../../plugins/jquery/jquery.min.js') }}"></script>

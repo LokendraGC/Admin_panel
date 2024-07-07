@@ -9,7 +9,11 @@ use App\Http\Controllers\Controller;
 class ProfileController extends Controller
 {
     public function allUser(){
-        return view('backend.user_profile.index-user');
+
+        $users = User::get();
+        return view('backend.user_profile.index-user',[
+            'users' => $users
+        ]);
     }
 
     public function createUser(){

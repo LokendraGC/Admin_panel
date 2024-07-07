@@ -14,9 +14,14 @@ class PostController extends Controller
         public function index(){
 
             $posts = Post::where('type','post')->get();
+            $total_posts = $posts->count();
+
+            $post_publish = Post::where(['type'=>'post','status'=>'publish'])->count();
 
             return view('backend.posts.index-post',[
-                'posts' => $posts
+                'total_posts' => $total_posts,
+                'posts' => $posts,
+                'post_publish' => $post_publish
             ]);
         }
 
@@ -31,7 +36,7 @@ class PostController extends Controller
 
         public function store(Request $request){
 
-            // return $request->category;
+            // return $request;
 
             $request->validate([
                     'title' => ['required', 'unique:posts', 'max:255'],
@@ -52,7 +57,7 @@ class PostController extends Controller
                 $post->title = $request->title;
                 $post->slug = $request->slug;
                 $post->content = $request->content;
-                $post->status = $request->status;
+                $post->status = isset( $request->status ) ? $request->status : [];
                 $post->type = 'post';
 
                 $post->save();
@@ -94,9 +99,12 @@ class PostController extends Controller
 
         public function edit(Post $id){
 
+
         $categories = Category::get();
 
         $postMeta = $id->postMeta->pluck('meta_value', 'meta_key')->toArray();
+
+            // dd($postMeta);
 
             return view('backend.posts.edit-post',[
                 'post' => $id,
@@ -107,6 +115,7 @@ class PostController extends Controller
 
         public function update(Post $id, Request $request){
 
+            // return $request;
             $postMeta = $id->postMeta->pluck('meta_value', 'meta_key')->toArray();
 
             $post = $id;
@@ -114,14 +123,35 @@ class PostController extends Controller
             $post->title = $request->title;
             $post->slug = $request->slug;
             $post->content = $request->content;
-            $post->status = $request->status;
+            $post->status = isset( $request->status )? $request->status : [];
             $post->type = 'post';
 
+            // $request->validate([
+            //     'featured_image' => 'required | mimes:png,jpg,jpeg|max:3000'
+            // ]);
+
+            $file = isset( $request->featured_image_remove ) ? ($request->hasFile('featured_image') ? $request->file('featured_image')->store('', 'public') : NULL) : ($request->hasFile('featured_image') ? $request->file('featured_image')->store('', 'public') : $postMeta['featured_image']);
+
             $post->update();
+
+            $categories = isset( $request->category ) ? $request->category : [];
+
+            $existingCategoryIds = Category::whereIn('id', $categories)->pluck('id')->toArray();
+
+            if ( $post->exists() ) {
+
+                $post->categories()->sync($existingCategoryIds);
+            }
+            else {
+
+                $post->categories()->attach($existingCategoryIds);
+            }
+
 
             $metadata = [];
             $metadata['seo_title'] = $request->seo_title;
             $metadata['seo_description'] = $request->seo_description;
+            $metadata['featured_image'] = $file;
 
             foreach ( $metadata as $key => $value ) {
                 $post_meta = new PostMeta();

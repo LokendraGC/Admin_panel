@@ -73,12 +73,12 @@
                                             <div class="row-action">
                                                 <span class="edit">
                                                     <a href="" class="text-primary"><span
-                                                            class="text-black fw-700">All (8)</span></a>
+                                                            class="text-black fw-700">All ({{ $total_posts }})</span></a>
                                                 </span>
                                                 <span class="view">
                                                     |
                                                     <a target="_self" href="" class="text-primary">Published
-                                                        (8)</a>
+                                                        ({{ $post_publish }})</a>
                                                 </span>
                                             </div>
                                         </div>
@@ -115,14 +115,13 @@
                                                     </span>
                                                     <span class="delete">
                                                         |
-                                                        <a href="{{ route('admin.post.destroy',$post->id) }}"
+                                                        <a href="{{ route('admin.post.destroy', $post->id) }}"
                                                             onclick="return confirm('Are you sure you want to delete?');"
                                                             class="text-danger">Trash</a>
                                                     </span>
                                                     <span class="view">
                                                         |
-                                                        <a target="_blank" href=""
-                                                            class="text-primary">View</a>
+                                                        <a target="_blank" href="" class="text-primary">View</a>
                                                     </span>
                                                 </div>
                                             </td>

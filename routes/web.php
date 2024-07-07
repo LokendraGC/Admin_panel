@@ -30,5 +30,6 @@ Route::get('/user/show-users',[ProfileController::class,'allUser'])->name('user.
 Route::post('/user/register',[ProfileController::class,'register'])->name('user.register');
 Route::get('/dashboard',[ProfileController::class,'checkDashboard'])->name('user.dashboard');
 
+
 // connecting custom routes
 Route::group([],base_path('routes/admin.php'));
