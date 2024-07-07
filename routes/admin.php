@@ -1,19 +1,20 @@
 <?php
 
+use App\Http\Middleware\ValidUser;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\backend\DashboardController;
-use App\Http\Controllers\backend\PostController;
-use App\Http\Controllers\backend\PostCategoryController;
-use App\Http\Controllers\backend\PageController;
-use App\Http\Controllers\backend\OptionsController;
 use App\Http\Controllers\backend\AuthController;
+use App\Http\Controllers\backend\PageController;
+use App\Http\Controllers\backend\PostController;
+use App\Http\Controllers\backend\OptionsController;
+use App\Http\Controllers\backend\DashboardController;
+use App\Http\Controllers\backend\PostCategoryController;
 
 
 //  /admin/<URL>
 
 
 // for posts
-Route::prefix('admin')->middleware(['auth'])->group(function(){
+Route::prefix('admin')->middleware(ValidUser::class)->group(function(){
 
     Route::get('/',[DashboardController::class,'index'])->name('admin.dashboard');
 

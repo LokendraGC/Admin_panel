@@ -5,6 +5,8 @@ namespace App\Http\Controllers\backend;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -44,5 +46,33 @@ class ProfileController extends Controller
             }else{
                 return to_route('admin.login');
             }
+    }
+
+    public function edit(string $user_id){
+            $user = User::find($user_id);
+            return view('backend.user_profile.edit-user',[
+                'user' => $user
+            ]);
+    }
+
+    public function update(Request $request){
+
+        $request->validate([
+            'current_password' => 'required',
+            'password' => 'required|confirmed',
+        ]);
+
+        $user = Auth::user();
+
+        if ( Hash::check( $request->input('current_password'), $user->password ) ){
+
+            // update the password
+            $user->password = bcrypt($request->input('password'));
+            $user->save();
+
+            return redirect()->route('user.all')->with('success','Password Update Successfully');
+        }else{
+            return redirect()->back()->withErrors(['current_password' => 'The current password is incorrect']);
+        }
     }
 }

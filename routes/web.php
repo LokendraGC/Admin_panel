@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\ValidUser;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backend\AuthController;
 use App\Http\Controllers\backend\ProfileController;
@@ -26,10 +27,11 @@ Route::get('/admin-logout',[AuthController::class,'getLogOut'])->name('logout');
 
 //user profile
 Route::get('/user/register',[ProfileController::class,'createUser'])->name('user.login');
-Route::get('/user/show-users',[ProfileController::class,'allUser'])->name('user.all');
+Route::get('/user/show-users',[ProfileController::class,'allUser'])->name('user.all')->middleware(ValidUser::class);
 Route::post('/user/register',[ProfileController::class,'register'])->name('user.register');
 Route::get('/dashboard',[ProfileController::class,'checkDashboard'])->name('user.dashboard');
-
+Route::get('user/{id}/edit',[ProfileController::class,'edit'])->name('admin.user.edit');
+Route::post('user/{id}/edit',[ProfileController::class,'update'])->name('admin.user.update');
 
 // connecting custom routes
 Route::group([],base_path('routes/admin.php'));

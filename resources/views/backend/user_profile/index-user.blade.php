@@ -70,6 +70,11 @@
                         <div class="card-body">
                             <table id="example1"
                                 class="table table-striped project-orders-table data__table dataTable no-footer">
+                                <div>
+                                    @session('success')
+                                        <p text-primary text-center>{{ session('success') }}</p>
+                                    @endsession
+                                </div>
                                 <thead>
                                     <tr>
                                         <th>Name</th>
@@ -80,9 +85,15 @@
                                 <tbody>
 
                                     @foreach ($users as $user)
-                                        <tr>
+                                        <tr style="cursor: pointer">
                                             <td><span>{{ $user->name }}</span>
                                                 <br>
+                                                <div class="row-action">
+                                                    <span class="edit">
+                                                        <a href="{{ route('admin.user.edit', $user->id) }}"
+                                                            class="text-primary">Edit</a>
+                                                    </span>
+                                                </div>
                                                 <div class="row-action">
                                                 </div>
                                             </td>

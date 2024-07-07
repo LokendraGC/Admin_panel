@@ -172,12 +172,15 @@
                       </a>
                   </li>
                   <li class="nav-item">
-                      <a href="{{ route('logout') }}" class="nav-link">
+                      <a href="{{ route('logout') }}" class="nav-link"
+                        onclick="return confirm('Are you sure you want to logout?');"
+                      >
                           <i class="fa fa-sign-out" aria-hidden="true"></i>
                           <p>
                               Logout
                           </p>
                       </a>
+
                   </li>
               </ul>
           </nav>
