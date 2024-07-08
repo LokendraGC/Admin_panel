@@ -61,13 +61,13 @@
                             class="dnXmp"></grammarly-extension><grammarly-extension data-grammarly-shadow-root="true"
                             style="position: absolute; top: -1px; left: -1px; pointer-events: none;"
                             class="dnXmp"></grammarly-extension>
-                        <div class="card-body">
-                            <h4 class="card-title">Add New Category</h4>
-                            <hr>
-                            <form class="forms-sample" action="{{ route('admin.post.category.store') }}" method="POST">
-                                @csrf
 
-
+                        <form class="forms-sample" action="{{ route('admin.post.category.store') }}" method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <div class="card-body">
+                                <h4 class="card-title">Add New Category</h4>
+                                <hr>
                                 <div class="form-group">
                                     <label for="name">Name<span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="title" name="title" required="">
@@ -91,10 +91,28 @@
                                     <textarea class="form-control" rows="5" name="content" spellcheck="false"></textarea>
                                 </div>
 
+
                                 <div class="form-group">
-                                    <label for="header_logo">Header Logo</label>
-                                    <input type="file" class="form-control-file" id="header_logo" name="header_logo">
+                                    <label for="category_image">Category Image</label>
+                                    {{-- <a href=""><i class="fa-solid fa-delete-left delete"></i></a> --}}
+
+                                    <br>
+                                    <div class="file-preview-item">
+                                        <button onclick="removeNode(this)" data-name="category_image"
+                                            class="btn btn-sm btn-link remove-attachment" type="button">
+                                            <i class="fa-solid fa-delete-left header_logo append"></i>
+                                        </button>
+                                        @if (isset($option['category_image']))
+                                            <img src="{{ asset('storage/' . $option['category_image']) }}"
+                                                alt="Header Image" style="max-width: 100px; margin-bottom: 10px;">
+                                        @else
+                                            <p> No Header image uploaded.</p>
+                                        @endif
+                                    </div>
+                                    <input type="file" class="form-control-file" id="category_image"
+                                        name="category_image" accept="image/*">
                                 </div>
+
                                 <div class="form-group">
                                     <label for="menuOrder">Order</label>
                                     <input type="number" class="form-control" id="menuOrder" name="menu_order"
@@ -107,8 +125,9 @@
                                 <button type="submit" class="btn bg-gradient-primary"
                                     href="http://adminlte.test/admin/post/create">Add New
                                     Category</button>
-                            </form>
-                        </div>
+
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="col-lg-7">

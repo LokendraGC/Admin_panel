@@ -1,5 +1,26 @@
 @extends('backend.layouts.app')
 
+<style>
+    .header_logo {
+        color: red;
+        font-size: 20px;
+        cursor: pointer;
+        top: 40px;
+        left: 111px;
+        position: absolute;
+    }
+
+    .footer_logo {
+        color: red;
+        font-size: 20px;
+        cursor: pointer;
+        top: 30px;
+        left: 111px;
+        /* right: 390px; */
+        position: absolute;
+    }
+</style>
+
 @section('main-section')
     <style>
         .card-primary.card-outline {
@@ -24,6 +45,9 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
+            <form action="{{ route('admin.options.store') }}" method="POST"
+            enctype="multipart/form-data">
+            @csrf
             <div class="row">
                 <div class="col-lg-9">
                     <div class="card card-primary card-outline">
@@ -57,9 +81,7 @@
                                     <div class="container-fluid">
                                         <div class="row">
                                             <div class="col-md-6 my-3">
-                                                <form action="{{ route('admin.options.store') }}" method="POST"
-                                                    enctype="multipart/form-data">
-                                                    @csrf
+
                                                     <div class="form-group">
                                                         <label for="email">Email</label>
                                                         <input type="email" class="form-control" id="email"
@@ -119,10 +141,25 @@
                                             <div class="col-md-12">
 
                                                 <div class="form-group">
-                                                    <label for="header_logo">Header Logo</label>
-                                                    <input type="file" class="form-control-file" id="header_logo"
-                                                        name="header_logo" accept="image/*"
-                                                        value="{{ $option['header_logo'] }}">
+                                                    <label for="header_image">Header Image</label>
+                                                    {{-- <a href=""><i class="fa-solid fa-delete-left delete"></i></a> --}}
+
+                                                    <br>
+                                                    <div class="file-preview-item">
+                                                        <button onclick="removeNode(this)" data-name="header_image"
+                                                            class="btn btn-sm btn-link remove-attachment" type="button">
+                                                            <i class="fa-solid fa-delete-left header_logo append"></i>
+                                                        </button>
+                                                        @if (isset($option['header_image']))
+                                                            <img src="{{ asset('storage/' . $option['header_image']) }}"
+                                                                alt="Header Image"
+                                                                style="max-width: 100px; margin-bottom: 10px;">
+                                                        @else
+                                                            <p> No Header image uploaded.</p>
+                                                        @endif
+                                                    </div>
+                                                    <input type="file" class="form-control-file" id="header_image"
+                                                        name="header_image" accept="image/*">
                                                 </div>
 
                                             </div>
@@ -145,11 +182,26 @@
                                             </div>
                                             <div class="col-md-6">
 
-                                                <div class="form-group" style="margin-top: 20px">
-                                                    <label for="footer_logo">Footer Logo</label>
-                                                    <input type="file" class="form-control-file" id="footer_logo"
-                                                        name="footer_logo" accept="image/*"
-                                                        value="{{ $option['footer_logo'] }}">
+                                                <div class="form-group">
+                                                    <label for="footer_image">Footer Image</label>
+                                                    {{-- <a href=""><i class="fa-solid fa-delete-left delete"></i></a> --}}
+
+                                                    <br>
+                                                    <div class="file-preview-item">
+                                                        <button onclick="removeNode(this)" data-name="footer_image"
+                                                            class="btn btn-sm btn-link remove-attachment" type="button">
+                                                            <i class="fa-solid fa-delete-left footer_logo append"></i>
+                                                        </button>
+                                                        @if (isset($option['footer_image']))
+                                                            <img src="{{ asset('storage/' . $option['footer_image']) }}"
+                                                                alt="Footer Image"
+                                                                style="max-width: 100px; margin-bottom: 10px;">
+                                                        @else
+                                                            <p> No footer image uploaded.</p>
+                                                        @endif
+                                                    </div>
+                                                    <input type="file" class="form-control-file" id="footer_image"
+                                                        name="footer_image" accept="image/*">
                                                 </div>
 
                                             </div>
@@ -212,8 +264,9 @@
                         </div>
                     </div>
                 </div><!-- /.col-lg-3 -->
-                </form>
+
             </div><!-- /.row -->
+            </form>
         </div><!-- /.container-fluid -->
     </section><!-- /.content -->
 @endsection
