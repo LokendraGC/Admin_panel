@@ -47,16 +47,13 @@ class PageController extends Controller
         //         'status' => 'required'
         //     ]);
 
-
-
-
         $file = $request->file('featured_image');
 
             //     $request->validate([
             //     'featured_image' => 'required|mimes:png,jpg,jpeg|max:3000'
             // ]);
 
-        $post = new Post;
+                $post = new Post;
 
                 $post->user_id = Auth::user()->id;
                 $post->title = $request->title;
@@ -71,6 +68,7 @@ class PageController extends Controller
                 $metadata = [];
                 $metadata['seo_title'] = $request->seo_title;
                 $metadata['seo_description'] = $request->seo_description;
+                $metadata['page_template'] = $request->page_template;
                 $metadata['featured_image'] = $request->featured_image->store('','public');
 
                 foreach ( $metadata as $key => $value ) {
@@ -104,7 +102,7 @@ class PageController extends Controller
     }
 
     public function update(Post $id, Request $request){
-        // return $request;
+
 
         $postMeta = $id->postMeta->pluck('meta_value', 'meta_key')->toArray();
 
@@ -123,6 +121,7 @@ class PageController extends Controller
         $metadata = [];
         $metadata['seo_title'] = $request->seo_title;
         $metadata['seo_description'] = $request->seo_description;
+        $metadata['page_template'] = $request->page_template;
         $metadata['featured_image'] = $file;
 
         // dd($metadata);

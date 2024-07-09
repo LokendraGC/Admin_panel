@@ -34,6 +34,12 @@
           background-color: rgba(255, 255, 255, .1) !important;
           color: white !important;
       }
+
+      [class*="sidebar-dark-"]
+      {
+        background-color: #212529 !important;
+      }
+
   </style>
 
   <!-- Main Sidebar Container -->

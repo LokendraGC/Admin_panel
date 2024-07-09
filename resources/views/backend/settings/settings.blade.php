@@ -79,9 +79,14 @@
                                     <div class="col-sm-9">
                                         <select class="form-control" id="select_homepage" style="max-width: fit-content;"
                                             name="select_homepage">
-                                            <option value="0" @if( $setting_data['select_homepage'] == 0 ) selected @endif>Homepage</option>
-                                            <option value="1" @if( $setting_data['select_homepage'] == 1 ) selected @endif>About</option>
-                                            <option value="2" @if( $setting_data['select_homepage'] == 2 ) selected @endif>Message Us</option>
+                                            @foreach (\App\Enums\TemplateType::getKeyValuePairs() as $label => $value)
+                                                <option  value="{{ $value }}"
+                                                @if ($value == $setting_data['select_homepage'])
+                                                    selected
+                                                @endif
+                                                >{{ $label }}
+                                                </option>
+                                        @endforeach
                                         </select>
                                     </div>
                                 </div>

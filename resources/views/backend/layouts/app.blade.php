@@ -10,6 +10,19 @@
     @include('backend.assets.cssfile')
 </head>
 
+<style>
+    body
+    {
+        font-family: "Figtree", sans-serif !important;
+        font-size: 0.9rem !important;
+    }
+
+.content-header h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    }
+</style>
+
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 

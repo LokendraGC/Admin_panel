@@ -33,7 +33,7 @@
                                     <label for="title">Name</label>
                                     <input type="text" class="form-control" id="title" placeholder="Add title"
                                         name="title">
-                                        @error('title')
+                                    @error('title')
                                         <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -41,7 +41,7 @@
                                     <label for="slug">Slug</label>
                                     <input type="text" class="form-control" id="slug" placeholder="Add slug"
                                         name="slug">
-                                        @error('slug')
+                                    @error('slug')
                                         <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -49,8 +49,8 @@
                                     <label for="content">Content</label>
                                     <textarea class="editor" class="form-control" name="content"></textarea>
                                     @error('content')
-                                    <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
-                                @enderror
+                                        <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -82,10 +82,15 @@
                                 <div class="form-group">
                                     <label>Page Template</label>
                                     <select class="form-control select2" style="width: 100%;" name="page_template">
-                                        <option selected="">Default</option>
-                                        @foreach ($pages as $page)
-                                        <option value="{{$page->title}}">{{ $page->title }}</option>
+                                        @foreach (\App\Enums\TemplateType::getKeyValuePairs() as $label => $value)
+                                            @if ($value != 'home')
+                                                <option selected="" value="{{ $value }}">{{ $label }}
+                                                </option>
+                                            @endif
                                         @endforeach
+                                        {{-- @foreach ($pages as $page)
+                                        <option value="{{$page->title}}">{{ $page->title }}</option>
+                                        @endforeach --}}
                                     </select>
                                 </div>
                                 <button type="submit" class="btn bg-gradient-primary">Update</button>
@@ -114,7 +119,7 @@
                                     <label for="seo_title">SEO Title</label>
                                     <input type="text" class="form-control" id="seo_title" placeholder="Enter seo title"
                                         name="seo_title">
-                                        @error('seo_title')
+                                    @error('seo_title')
                                         <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -122,8 +127,8 @@
                                     <label for="metadescription">Meta Description</label>
                                     <textarea class="form-control" id="metadescription" rows="5" name="seo_description" spellcheck="false"></textarea>
                                     @error('seo_description')
-                                    <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
-                                @enderror
+                                        <div class="alert alert-danger mb-1 mt-1">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                             </div>
