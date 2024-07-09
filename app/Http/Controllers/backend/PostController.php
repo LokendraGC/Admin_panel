@@ -6,11 +6,14 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Models\PostMeta;
 use Illuminate\Http\Request;
+use App\Traits\SlugGenerateTrait;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
+       use SlugGenerateTrait;
+
         public function index(){
 
             $posts = Post::where('type','post')->get();
@@ -55,7 +58,7 @@ class PostController extends Controller
 
                 $post->user_id = Auth::user()->id;
                 $post->title = $request->title;
-                $post->slug = $request->slug;
+                $post->slug = $this->createSlug( $request->title, $request->slug, $post);
                 $post->content = $request->content;
                 $post->status = isset( $request->status ) ? $request->status : [];
                 $post->type = 'post';
@@ -119,9 +122,9 @@ class PostController extends Controller
             $postMeta = $id->postMeta->pluck('meta_value', 'meta_key')->toArray();
 
             $post = $id;
-            $post->user_id = 1;
+            $post->user_id = Auth::user()->id;
             $post->title = $request->title;
-            $post->slug = $request->slug;
+            $post->slug = $this->getSlug( $request->title, $request->slug, $post);
             $post->content = $request->content;
             $post->status = isset( $request->status )? $request->status : [];
             $post->type = 'post';

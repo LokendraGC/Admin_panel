@@ -164,7 +164,7 @@
                     </ul>
                   </li>
                   <li class="nav-item">
-                      <a href="{{ route('admin.options.index') }}" class="nav-link">
+                      <a href="{{ route('admin.settings.index') }}" class="nav-link {{ Route::is('admin.settings.index') ? 'active' : '' }}">
                           <i class="fa fa-cog" aria-hidden="true"></i>
                           <p>
                               Settings

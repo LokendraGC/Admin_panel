@@ -128,7 +128,7 @@
                                 <div class="form-group">
                                     <label for="menuOrder">Order</label>
                                     <input type="number" class="form-control" id="menuOrder" name="menu_order"
-                                        value="{{ $categoryMeta['menu_order'] }}">
+                                        value="{{ $category->menu_order }}">
                                 </div>
 
                                 {{-- <a class="btn bg-gradient-primary" href="http://adminlte.test/admin/post/create">Add New

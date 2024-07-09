@@ -3,6 +3,7 @@
 use App\Http\Middleware\ValidUser;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backend\AuthController;
+use App\Http\Controllers\backend\SettingController;
 use App\Http\Controllers\backend\PageController;
 use App\Http\Controllers\backend\PostController;
 use App\Http\Controllers\backend\OptionsController;
@@ -46,5 +47,9 @@ Route::prefix('admin')->middleware(ValidUser::class)->group(function(){
     Route::get('page/{id}/edit',[PageController::class,'edit'])->name('admin.page.edit');
     Route::post('page/{id}/edit',[PageController::class,'update'])->name('admin.page.update');
     Route::get('page/{id}/delete',[PageController::class,'destroy'])->name('admin.page.destroy');
+
+    // settings
+    Route::get('settings',[SettingController::class,'index'])->name('admin.settings.index');
+    Route::post('settings',[SettingController::class,'store'])->name('admin.settings.store');
 
 });

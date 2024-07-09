@@ -5,12 +5,16 @@ namespace App\Http\Controllers\backend;
 use App\Models\Page;
 use App\Models\Post;
 use App\Models\PostMeta;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Traits\SlugGenerateTrait;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
+    use SlugGenerateTrait;
+
     public function index(){
 
         $pages =  Post::where('type','page')->get();
@@ -56,7 +60,8 @@ class PageController extends Controller
 
                 $post->user_id = Auth::user()->id;
                 $post->title = $request->title;
-                $post->slug = $request->slug;
+                // $post->slug = $request->slug ? $request->slug : Str::slug($request->title);
+                $post->slug = $this->createSlug( $request->title, $request->slug, $post);
                 $post->content = $request->content;
                 $post->status = isset( $request->status ) ? $request->status : [];
                 $post->type = 'page';
@@ -106,12 +111,10 @@ class PageController extends Controller
         $post = $id;
         $post->user_id = Auth::user()->id;
         $post->title = $request->title;
-        $post->slug = $request->slug;
+        $post->slug = $this->getSlug( $request->title, $request->slug, $post);
         $post->content = $request->content;
         $post->status =  $post->status = isset( $request->status ) ? $request->status : [];
         $post->type = 'page';
-
-        // $file = $request->hasFile('featured_image') ? $request->file('featured_image')->store('', 'public') : $postMeta['featured_image'];
 
         $file = isset( $request->featured_image_remove ) ? ($request->hasFile('featured_image') ? $request->file('featured_image')->store('', 'public') : NULL) : ($request->hasFile('featured_image') ? $request->file('featured_image')->store('', 'public') : $postMeta['featured_image']);
 
@@ -123,7 +126,6 @@ class PageController extends Controller
         $metadata['featured_image'] = $file;
 
         // dd($metadata);
-
         foreach ( $metadata as $key => $value ) {
             $post_meta = new PostMeta();
 
