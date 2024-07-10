@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\backend;
 
+use Carbon\Carbon;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\PostMeta;
@@ -14,8 +15,8 @@ class PostController extends Controller
 {
        use SlugGenerateTrait;
 
-        public function index(){
-
+        public function index()
+        {
             $posts = Post::where('type','post')->get();
             $total_posts = $posts->count();
 
@@ -104,15 +105,18 @@ class PostController extends Controller
 
 
         $categories = Category::get();
+        $post = $id;
 
         $postMeta = $id->postMeta->pluck('meta_value', 'meta_key')->toArray();
+        $createdAtFormatted = Carbon::parse($post->created_at)->format('m/d/Y h:i A');
 
             // dd($postMeta);
 
             return view('backend.posts.edit-post',[
                 'post' => $id,
                 'postMeta' => $postMeta,
-                'categories' => $categories
+                'categories' => $categories,
+                'created_at' => $createdAtFormatted
             ]);
         }
 
@@ -126,6 +130,7 @@ class PostController extends Controller
             $post->title = $request->title;
             $post->slug = $this->getSlug( $request->title, $request->slug, $post);
             $post->content = $request->content;
+            $post->created_at = $request->date_time ? $request->date_time : $post->created_at;
             $post->status = isset( $request->status )? $request->status : [];
             $post->type = 'post';
 

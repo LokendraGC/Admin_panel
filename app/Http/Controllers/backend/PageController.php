@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\backend;
 
+use Carbon\Carbon;
 use App\Models\Page;
 use App\Models\Post;
 use App\Models\PostMeta;
@@ -91,12 +92,14 @@ class PageController extends Controller
         $postMeta = $id->postMeta->pluck('meta_value','meta_key')->toArray();
         $pages = Post::where('type','page')->get();
 
-        // dd($postMeta);
+        $post = $id;
+        $createdAtFormatted = Carbon::parse($post->created_at)->format('m/d/Y h:i A');
 
         return view('backend.pages.edit-page',[
             'post' => $id,
             'postMeta' => $postMeta,
             'pages' => $pages,
+            'created_at' => $createdAtFormatted
 
         ]);
     }
@@ -109,6 +112,7 @@ class PageController extends Controller
         $post = $id;
         $post->user_id = Auth::user()->id;
         $post->title = $request->title;
+        $post->created_at = $request->date_time ? $request->date_time : $post->created_at;
         $post->slug = $this->getSlug( $request->title, $request->slug, $post);
         $post->content = $request->content;
         $post->status =  $post->status = isset( $request->status ) ? $request->status : [];

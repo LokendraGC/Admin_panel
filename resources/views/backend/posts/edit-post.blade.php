@@ -76,7 +76,7 @@
                                 <div class="form-group">
                                     <div class="input-group date" id="reservationdatetime" data-target-input="nearest">
                                         <input type="text" class="form-control datetimepicker-input"
-                                            data-target="#reservationdatetime" />
+                                            data-target="#reservationdatetime" name="date_time" value="{{ $created_at }}"/>
                                         <div class="input-group-append" data-target="#reservationdatetime"
                                             data-toggle="datetimepicker">
                                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>

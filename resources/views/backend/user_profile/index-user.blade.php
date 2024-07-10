@@ -12,7 +12,8 @@
         text-decoration: underline;
     }
 
-    .dataTables_filter {
+    .dataTables_filter
+     {
         text-align: right;
         padding-right: 15px;
     }
@@ -41,6 +42,18 @@
     tr.even {
         cursor: pointer;
     }
+
+    .main-footer
+    {
+        bottom: 0px;
+    }
+
+    footer.main-footer
+    {
+    position: absolute;
+    left: 0;
+    right: 0px;
+}
 </style>
 
 @section('main-section')
@@ -51,7 +64,6 @@
                 <div class="col-sm-6">
                     <h1>All User</h1>
                 </div>
-
             </div>
         </div><!-- /.container-fluid -->
     </section>
@@ -64,7 +76,6 @@
                     <div class="card">
                         <div class="card-header">
                             <a class="btn bg-gradient-primary" href="{{ route('user.register') }}">Add User</a>
-
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">

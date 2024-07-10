@@ -37,8 +37,8 @@
             @yield('main-section')
         </div>
 
-        @include('backend.assets.jsfile')
 
+        @include('backend.assets.jsfile')
         @include('backend.layouts.footer')
 
         <!-- /.control-sidebar -->
