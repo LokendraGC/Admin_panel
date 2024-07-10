@@ -25,3 +25,10 @@
       </ul>
   </nav>
   <!-- /.navbar -->
+
+  <style>
+    .form-control
+    {
+        font-size: 0.875rem;
+    }
+  </style>

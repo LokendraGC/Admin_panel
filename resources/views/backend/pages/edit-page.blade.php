@@ -5,8 +5,8 @@
         color: red;
         font-size: 20px;
         cursor: pointer;
-        top: 100px;
-        right: 390px;
+        top: 30%;
+        right: 253px;
         position: absolute;
     }
 </style>
@@ -34,7 +34,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <!-- left column -->
-                    <div class="col-md-8">
+                    <div class="col-md-9">
                         <!-- general form elements -->
                         <div class="card card-primary">
 
@@ -58,7 +58,7 @@
                         <!-- /.card -->
                     </div>
 
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <div class="card">
                             <div class="card-body">
                                 <div class="form-group">
@@ -72,6 +72,17 @@
                                     </select>
                                 </div>
 
+
+                                <div class="form-group">
+                                    <div class="input-group date" id="reservationdatetime" data-target-input="nearest">
+                                        <input type="text" class="form-control datetimepicker-input"
+                                            data-target="#reservationdatetime" />
+                                        <div class="input-group-append" data-target="#reservationdatetime"
+                                            data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
                                     <label for="header_logo">Featured Image</label>
@@ -92,6 +103,8 @@
                                     </div>
                                     <input type="file" class="form-control-file" id="featured_image"
                                         name="featured_image" accept="image/*">
+
+
                                 </div>
 
                                 <div class="form-group">
@@ -116,7 +129,15 @@
 
                                     </select>
                                 </div>
-                                <button type="submit" class="btn bg-gradient-primary">Update</button>
+                                    <div class="d-flex justify-content-between ">
+                                    <p class="">
+                                        <a class="btn btn-outline-primary" href=""
+                                            target="_blank">View</a>
+                                    </p>
+                                    <p class="">
+                                        <button type="submit" class="btn bg-gradient-primary">Update</button>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -124,7 +145,7 @@
                 </div>
                 <div class="row">
                     <!-- left column -->
-                    <div class="col-md-8">
+                    <div class="col-md-9">
                         <!-- general form elements -->
                         <div class="card card-primary">
 

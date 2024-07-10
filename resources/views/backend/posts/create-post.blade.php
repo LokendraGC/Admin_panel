@@ -23,7 +23,7 @@
                 @csrf
                 <div class="row">
                     <!-- left column -->
-                    <div class="col-md-8">
+                    <div class="col-md-9">
                         <!-- general form elements -->
                         <div class="card card-primary">
 
@@ -56,7 +56,7 @@
                         <!-- /.card -->
                     </div>
 
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <div class="card">
                             <div class="card-body">
                                 <div class="form-group">
@@ -66,6 +66,18 @@
                                         <option value="publish">publish</option>
                                         <option value="draft">Draft</option>
                                     </select>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="input-group date" id="reservationdatetime" data-target-input="nearest">
+                                        <input type="text" class="form-control datetimepicker-input"
+                                            data-target="#reservationdatetime" />
+                                        <div class="input-group-append" data-target="#reservationdatetime"
+                                            data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
@@ -89,8 +101,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>Multiple</label>
-                            <select class="select2" multiple="multiple" data-placeholder="Select a State"
+                            <label>Choose Categories</label>
+                            <select class="select2" multiple="multiple" data-placeholder="Select Categories"
                                 style="width: 100%;" name="category[]">
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->title }}</option>
@@ -102,7 +114,7 @@
                 </div>
                 <div class="row">
                     <!-- left column -->
-                    <div class="col-md-8">
+                    <div class="col-md-9">
                         <!-- general form elements -->
                         <div class="card card-primary">
                             {{-- <div class="card-header">

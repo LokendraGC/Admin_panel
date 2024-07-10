@@ -79,7 +79,7 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>Email</th>
-                                        <th>Date</th>
+                                        <th>Created At</th>
                                     </tr>
                                 </thead>
                                 <tbody>
